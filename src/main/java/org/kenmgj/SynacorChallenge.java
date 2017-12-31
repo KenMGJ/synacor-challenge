@@ -58,7 +58,7 @@ public class SynacorChallenge implements Serializable {
 	protected Stack<Integer> stack = new Stack<>();
 
 	protected boolean halt = false;
-	protected boolean debug = true;
+	protected boolean debug = false;
 
 	protected int ptr = 0;
 
@@ -73,14 +73,8 @@ public class SynacorChallenge implements Serializable {
 			int code = memory[ptr];
 			int a, b, c;
 
-			if (ptr == 5451 && seen == false) {
-				save();
-				seen = true;
-			}
-
-			if (ptr == 6027 && seen == false) {
-				save();
-				seen = true;
+			if (memory[ptr] == 2964) {
+				System.out.println("FOUND");
 			}
 
 			switch (code) {
@@ -322,7 +316,7 @@ public class SynacorChallenge implements Serializable {
 	}
 
 	protected void printLine(String op, Integer val1, Integer val2, Integer val3) {
-		if (debug) {
+		if (debug /* && "out".equals(op) && val1 != null && val1 == 61 */ ) {
 
 			String sval1;
 			if (val1 == null) {
@@ -349,9 +343,8 @@ public class SynacorChallenge implements Serializable {
 			}
 
 			StringBuilder log = new StringBuilder()
-					.append("[")
-					.append(String.format("%05d", ptr))
-					.append("] " + op + " " + sval1 + sval2 + sval3 + " [")
+					.append(String.format("[%05d]\t%s\t%s\t%s\t%s", ptr, op, sval1, sval2, sval3))
+					.append(" [")
 					;
 
 			for (int i : registers) {
@@ -533,6 +526,7 @@ public class SynacorChallenge implements Serializable {
 				i += 1;
 				break;
 			default:
+				logger.info(loc + "( " + s1 + " )");
 				i += 1;
 				break;
 			}
