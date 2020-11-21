@@ -29,7 +29,7 @@ public class SynacorChallenge implements Serializable {
 	protected static final int ARRAY_SIZE = 32768;
 	protected static final int REGISTER_COUNT = 8;
 	protected static final int MAX_REGISTER = 32775;
-	protected static final String FILE_NAME = "/Users/kgiroux/Desktop/synacor-challenge/challenge.bin";
+	protected static final String FILE_NAME = "/Users/kgiroux/repos/synacor-challenge/synacor-challenge/challenge.bin";
 
 	protected transient BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 	protected transient LinkedList<Character> charQueue = new LinkedList<Character>();
